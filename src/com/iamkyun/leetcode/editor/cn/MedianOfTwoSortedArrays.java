@@ -63,12 +63,25 @@ package com.iamkyun.leetcode.editor.cn;
 public class MedianOfTwoSortedArrays {
     public static void main(String[] args) {
         Solution solution = new MedianOfTwoSortedArrays().new Solution();
+        System.out.println(solution.findMedianSortedArrays(new int[]{1, 3}, new int[]{2}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-
+            int numsLength = nums1.length + nums2.length;
+            int[] nums = new int[numsLength];
+            int l1 = 0;
+            int l2 = 0;
+            for (int i = 0; i < numsLength; i++) {
+                if (l2 >= nums2.length || (l1 < nums1.length && nums1[l1] < nums2[l2])) {
+                    nums[i] = nums1[l1++];
+                } else {
+                    nums[i] = nums2[l2++];
+                }
+            }
+            return numsLength % 2 == 0 ? (double) (nums[numsLength / 2 - 1] + nums[numsLength / 2]) / 2 :
+                   (double) nums[numsLength / 2];
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

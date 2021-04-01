@@ -111,56 +111,17 @@
 // 👍 1013 👎 0
 
 package com.iamkyun.leetcode.editor.cn;
-
-public class StringToIntegerAtoi {
+public class StringToIntegerAtoi{
     public static void main(String[] args) {
         Solution solution = new StringToIntegerAtoi().new Solution();
-        System.out.println(solution.myAtoi("9223372036854775808"));
     }
 
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int myAtoi(String s) {
-            long res = 0;
-            boolean startCount = false;
-            boolean negative = false;
-            boolean startEmptyEnd = false;
-            for (int charInt : s.toCharArray()) {
-                if (!startEmptyEnd && charInt == 32) {
-                    continue;
-                }
-                startEmptyEnd = true;
-
-
-                if (!startCount && (charInt == 45 || charInt == 43)) {
-                    negative = charInt == 45;
-                    startCount = true;
-                    continue;
-                }
-
-                startCount = true;
-                if (charInt >= 48 && charInt <= 57) {
-                    res = res * 10 + (charInt - 48);
-
-                    if ((!negative && res > Integer.MAX_VALUE) || (negative && res - 1 > Integer.MAX_VALUE)) {
-                        if (negative) {
-                            return Integer.MIN_VALUE;
-                        }
-                        return Integer.MAX_VALUE;
-                    }
-
-                } else {
-                    break;
-                }
-            }
-
-            if (negative) {
-                res = -res;
-            }
-
-            return (int) res;
-        }
+        //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
+    public int myAtoi(String s) {
+        return 0;
     }
-    //leetcode submit region end(Prohibit modification and deletion)
+}
+//leetcode submit region end(Prohibit modification and deletion)
 
 }

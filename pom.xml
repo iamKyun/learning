@@ -6,18 +6,18 @@
 
     <groupId>com.iamkyun</groupId>
     <artifactId>learning</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>leetcode</name>
+    <modules>
+        <module>leetcode</module>
+        <module>spb</module>
+        <module>java</module>
+        <module>algorithm</module>
+    </modules>
+    <name>learning</name>
     <properties>
         <java.version>8</java.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>3.3.0</version>
-        </dependency>
-    </dependencies>
 </project>

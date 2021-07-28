@@ -1,0 +1,4 @@
+rocketmq:
+  name-server: rocket.nameserver:9876
+  producer:
+    group: p-group-1

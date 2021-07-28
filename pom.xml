@@ -13,6 +13,7 @@
         <module>spb</module>
         <module>java</module>
         <module>algorithm</module>
+        <module>rocketmq</module>
     </modules>
     <name>learning</name>
     <properties>

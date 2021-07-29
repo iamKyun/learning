@@ -15,6 +15,7 @@
         <module>algorithm</module>
         <module>rocketmq</module>
         <module>redis</module>
+        <module>hystrix</module>
     </modules>
     <name>learning</name>
     <properties>

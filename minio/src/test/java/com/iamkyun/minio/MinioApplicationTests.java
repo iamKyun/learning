@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 class MinioApplicationTests {
 
     @Test
@@ -18,6 +21,13 @@ class MinioApplicationTests {
                 }
             }).then(Mono.just("OK"))
             .subscribe(System.out::println);
+    }
+
+    @Test
+    void testPath() {
+        Path dest = Paths.get("test.png");
+        System.out.println(dest.getFileName());
+        System.out.println(dest.toAbsolutePath());
     }
 
 }

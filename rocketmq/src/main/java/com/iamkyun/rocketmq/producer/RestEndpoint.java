@@ -3,27 +3,27 @@ package com.iamkyun.rocketmq.producer;
 import com.iamkyun.rocketmq.model.OrderPaidEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.math.BigDecimal;
 
 @Slf4j
 @RestController
 public class RestEndpoint {
-    @Resource(name = "rocketMQTemplate")
+    @Autowired
     private RocketMQTemplate rocketMQTemplate;
 
-    @Resource(name = "rocketMQTemplate2")
+    @Autowired
     private RocketMQTemplate rocketMQTemplate2;
 
     @PostMapping("/message")
     public void sendMessage() {
-        for (int i = 0; i < 100; i++) {
-            log.info("send {}", i);
+        for (int i = 0; i < 10; i++) {
+            // log.info("send {}", i);
             rocketMQTemplate.convertAndSend("topic-1", new OrderPaidEvent(String.valueOf(i), BigDecimal.valueOf(i)));
         }
     }

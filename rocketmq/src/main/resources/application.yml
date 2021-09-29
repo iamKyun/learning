@@ -1,4 +1,7 @@
+spring:
+  application:
+    name: rocketmq
 rocketmq:
-  name-server: rocket.nameserver:9876
+  name-server: 172.16.16.224:9876
   producer:
-    group: p-group-1
+    group: ${spring.application.name}

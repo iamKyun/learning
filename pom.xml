@@ -16,6 +16,8 @@
         <module>rocketmq</module>
         <module>redis</module>
         <module>hystrix</module>
+        <module>spring-cloud</module>
+        <module>minio</module>
     </modules>
     <name>learning</name>
     <properties>

@@ -1,8 +1,10 @@
 package com.iamkyun.minio;
 
 import io.minio.BucketExistsArgs;
+import io.minio.GetPresignedObjectUrlArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
+import io.minio.ObjectWriteResponse;
 import io.minio.UploadObjectArgs;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,33 +29,30 @@ public class DemoController {
 
     @PostMapping("/upload")
     public Mono<String> upload(@RequestPart("files") Flux<FilePart> filePartFlux) {
-        return filePartFlux.doOnNext((item) -> {
+        return filePartFlux.doOnNext(this::uploadToMinio).then(Mono.just("OK"));
+    }
+
+    private void uploadToMinio(FilePart filePart) {
+        Path dest = Paths.get(filePart.filename());
+        filePart.transferTo(dest).doOnSuccess(v -> {
             try {
-                uploadToMinio(item);
+                boolean found = minioClient.bucketExists(BucketExistsArgs.builder().bucket("demo").build());
+                if (!found) {
+                    minioClient.makeBucket(MakeBucketArgs.builder().bucket("demo").build());
+                }
+
+                ObjectWriteResponse res = minioClient.uploadObject(
+                        UploadObjectArgs.builder()
+                                        .bucket("demo")
+                                        .object(dest.getFileName().toString())
+                                        .filename(dest.toAbsolutePath().toString())
+                                        .build());
+                System.out.println(res.etag());
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }).then(Mono.just("OK"));
-    }
+        }).subscribe((v) -> System.out.println("fin."));
 
-    private void uploadToMinio(FilePart filePart) throws Exception {
-        Path dest = Paths.get(filePart.filename());
-        filePart.transferTo(dest);
-
-        boolean found =
-                minioClient.bucketExists(BucketExistsArgs.builder().bucket("demo").build());
-        if (!found) {
-            minioClient.makeBucket(MakeBucketArgs.builder().bucket("demo").build());
-        } else {
-            System.out.println("Bucket 'demo' already exists.");
-        }
-
-        minioClient.uploadObject(
-                UploadObjectArgs.builder()
-                                .bucket("demo")
-                                .object(dest.getFileName().toString())
-                                .filename(dest.toAbsolutePath().toString())
-                                .build());
     }
 
 

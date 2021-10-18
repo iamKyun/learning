@@ -18,6 +18,7 @@
         <module>hystrix</module>
         <module>spring-cloud</module>
         <module>minio</module>
+        <module>sharding-jdbc</module>
     </modules>
     <name>learning</name>
     <properties>

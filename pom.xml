@@ -16,9 +16,10 @@
         <module>rocketmq</module>
         <module>redis</module>
         <module>hystrix</module>
-        <module>spring-cloud</module>
+        <module>spring-cloud-gateway</module>
         <module>minio</module>
         <module>sharding-jdbc</module>
+        <module>jvm</module>
     </modules>
     <name>learning</name>
     <properties>

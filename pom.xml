@@ -20,6 +20,7 @@
         <module>minio</module>
         <module>sharding-jdbc</module>
         <module>jvm</module>
+        <module>ble</module>
     </modules>
     <name>learning</name>
     <properties>

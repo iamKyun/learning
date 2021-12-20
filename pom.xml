@@ -12,20 +12,20 @@
         <module>leetcode</module>
         <module>spb</module>
         <module>java</module>
+        <module>java-features</module>
         <module>algorithm</module>
         <module>rocketmq</module>
         <module>redis</module>
-        <module>hystrix</module>
         <module>spring-cloud-gateway</module>
         <module>minio</module>
         <module>sharding-jdbc</module>
         <module>jvm</module>
-        <module>ble</module>
     </modules>
     <name>learning</name>
     <properties>
-        <java.version>8</java.version>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
+        <java.version>17</java.version>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
     </properties>
+
 </project>

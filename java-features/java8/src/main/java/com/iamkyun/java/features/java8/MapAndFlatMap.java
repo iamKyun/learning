@@ -1,4 +1,4 @@
-package com.iamkyun.java8;
+package com.iamkyun.java.features.java8;
 
 import java.util.Arrays;
 import java.util.List;
